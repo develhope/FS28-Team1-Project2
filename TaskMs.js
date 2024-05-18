@@ -47,3 +47,10 @@ completeTask(10, handleResult);
 //4-Function to List Tasks:
 // Define a function named listTasks that does not take any parameters.
 // Inside the listTasks function, log each task in the tasks array to the console, along with its corresponding index.(DAVID)
+
+function listTasks() {
+
+  task.forEach((task, index) => {
+      console.log(`Index: ${index}, Task: ${JSON.stringify(task)}`);
+  });
+}
