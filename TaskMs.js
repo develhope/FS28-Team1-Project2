@@ -1,5 +1,5 @@
 //1- Initialize an empty array named tasks to store task names.
-const task = ["Task 1", "Task 2", "Task 3", "Task 4"];
+const tasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
 
 //2-* Function to Add a Task:
 // * Define a function named addTask that takes two parameters:
@@ -12,6 +12,32 @@ const task = ["Task 1", "Task 2", "Task 3", "Task 4"];
 // // * Otherwise, add the task to the tasks array and invoke the callback function with null
 // as the first parameter and the message "Task added successfully" as the second parameter.(GIOVANNI)
 
+function addTask(task, callback) {
+    const delay = Math.round(Math.random() * 5000)
+    setTimeout(() => {
+        if (task != String || !task) {
+            callback(new Error(`${task} is empty or not a string`), null);
+        } else {
+            tasks.push(task)
+            callback(null, `${task} has been succesfully added`);
+        }
+    }, delay);
+}
+
+function handleResult(error, message) {
+    if (error) {
+        console.error(error.message);
+    } else {
+        console.log(message);
+    }
+};
+
+addTask("", handleResult);
+addTask(1, handleResult);
+addTask("Task5", handleResult);
+
+
+
 //3-Function to Complete a Task:
 // ### Define a function named completeTask that takes two parameters:
 // * index: An integer representing the index of the task to complete.
@@ -23,22 +49,22 @@ const task = ["Task 1", "Task 2", "Task 3", "Task 4"];
 // as the first parameter and the message "Task completed successfully" as the second parameter.(ADAMO)
 
 function completeTask(index, callback) {
-  setTimeout(() => {
-    if (index < 0 || index >= task.length) {
-      callback(new Error("Invalid task index"));
-    } else {
-      task.splice(index, 1);
-      callback(null, "Task completed successfully");
-    }
-  }, 1000);
+    setTimeout(() => {
+        if (index < 0 || index >= tasks.length) {
+            callback(new Error("Invalid task index"));
+        } else {
+            tasks.splice(index, 1);
+            callback(null, "Task completed successfully");
+        }
+    }, 1000);
 };
 
 function handleResult(error, message) {
-  if (error) {
-    console.error(error.message);
-  } else {
-    console.log(message);
-  }
+    if (error) {
+        console.error(error.message);
+    } else {
+        console.log(message);
+    }
 };
 
 completeTask(1, handleResult);
